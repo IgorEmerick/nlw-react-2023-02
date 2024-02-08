@@ -4,16 +4,18 @@ import { ptBR } from "date-fns/locale";
 import { X } from "lucide-react";
 
 interface INoteCardProps {
-  date: Date;
-  content: string;
+  note: {
+    date: Date;
+    content: string;
+  }
 }
 
-export function NoteCard({ content, date }: INoteCardProps) {
+export function NoteCard({ note: { content, date } }: INoteCardProps) {
   return (
     <Root>
       <Trigger className='rounded-md bg-slate-800 p-5 flex flex-col gap-3 overflow-hidden relative hover:ring-2 hover:ring-slate-600 text-left focus-visible:ring-2 focus-visible:ring-lime-400 outline-none'>
         <span className='text-sm font-medium text-slate-300'>
-          {date.toISOString()}
+          {formatDistanceToNow(date, { locale: ptBR, addSuffix: true })}
         </span>
 
         <p className='text-sm leading-6 text-slate-400'>
